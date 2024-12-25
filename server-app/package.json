@@ -1,5 +1,5 @@
 {
-  "name": "Kronvald server app",
+  "name": "kronvald-server-app",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -65,5 +65,9 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "engines": {
+    "npm": ">=10.0.0",
+    "node": ">=22.0.0"
   }
 }
