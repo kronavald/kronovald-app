@@ -1,5 +1,5 @@
-import React from 'react'
-import { Header } from '../header'
+import React from "react"
+import { Header } from "../header"
 
 export const getNoneLayout = (page: React.ReactElement) => page
 
