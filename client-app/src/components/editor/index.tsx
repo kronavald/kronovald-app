@@ -1,4 +1,4 @@
-import React from "react"
+import { forwardRef, memo } from "react"
 import RichTextEditor, {
     BaseKit,
     Blockquote,
@@ -42,6 +42,7 @@ import RichTextEditor, {
     Mention,
     Attachment,
     Mermaid,
+    UseEditorOptions,
 } from "reactjs-tiptap-editor"
 
 import { convertBase64ToBlob } from "@/lib/utils"
@@ -141,6 +142,7 @@ const extensions = [
             })
         },
     }),
+    // диаграммы mermaid
     Mermaid.configure({
         upload: (file: File) => {
             const reader = new FileReader()
@@ -160,13 +162,31 @@ export interface EditorProps {
     onChange?: (val: any) => void
 }
 
-export const Editor = ({ content = "", onChange }: EditorProps) => {
+const customOptions: UseEditorOptions = {
+    // onUpdate: ({ editor }) => console.log('Content updated:', editor.getText()),
+    // onSelectionUpdate: ({ editor }) => console.log('Selection updated:', editor.getText()),
+    // onFocus: () => console.log('Editor focused'),
+    // onBlur: () => console.log('Editor blurred'),
+    // editable: true,
+    // autofocus: 'start',
+    immediatelyRender: true,
+    shouldRerenderOnTransaction: false,
+}
+
+const Editor = ({ content = "", onChange }: EditorProps, ref: any) => {
+    // console.count("editor render")
     return (
         <RichTextEditor
             output="text"
+            ref={ref}
             content={content}
             onChangeContent={onChange}
             extensions={extensions}
+            useEditorOptions={customOptions}
         />
     )
 }
+
+const EditorWithReff = forwardRef(Editor)
+
+export default memo(EditorWithReff)
