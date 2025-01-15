@@ -1,199 +1,97 @@
 import { useTranslation } from "react-i18next"
-import TestComponent from "./TestComponent"
-import RichTextEditor, {
-  BaseKit,
-  Blockquote,
-  Bold,
-  BulletList,
-  Clear,
-  Code,
-  CodeBlock,
-  Color,
-  ColumnActionButton,
-  Emoji,
-  ExportPdf,
-  ExportWord,
-  FontFamily,
-  FontSize,
-  FormatPainter,
-  Heading,
-  Highlight,
-  History,
-  HorizontalRule,
-  Image,
-  ImportWord,
-  Indent,
-  Italic,
-  Katex,
-  LineHeight,
-  Link,
-  MoreMark,
-  OrderedList,
-  SearchAndReplace,
-  SlashCommand,
-  Strike,
-  Table,
-  TaskList,
-  TextAlign,
-  Underline,
-  Video,
-  TableOfContents,
-  Excalidraw,
-  TextDirection,
-  Mention,
-  Attachment,
-  Mermaid,
-} from "reactjs-tiptap-editor"
 
-// Import CSS
-import "reactjs-tiptap-editor/style.css"
-import { useState } from "react"
-import { convertBase64ToBlob } from "@/lib/utils"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
+import Editor from "@/components/editor"
+import { Editor as TipTapEditor } from "reactjs-tiptap-editor"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { defaultQueryFn } from "@/api"
+import { Loader2 } from "lucide-react"
 
-const extensions = [
-  BaseKit.configure({
-    multiColumn: true,
-    placeholder: {
-      showOnlyCurrent: true,
-    },
-    characterCount: {
-      limit: 50_000,
-    },
-  }),
-  History,
-  SearchAndReplace,
-  TextDirection,
-  TableOfContents,
-  FormatPainter.configure({ spacer: true }),
-  Clear,
-  FontFamily,
-  Heading.configure({ spacer: true }),
-  FontSize,
-  Bold,
-  Italic,
-  Underline,
-  Strike,
-  MoreMark,
-  Katex,
-  Emoji,
-  Color.configure({ spacer: true }),
-  Highlight,
-  BulletList,
-  OrderedList,
-  TextAlign.configure({ types: ["heading", "paragraph"], spacer: true }),
-  Indent,
-  LineHeight,
-  TaskList.configure({
-    spacer: true,
-    taskItem: {
-      nested: true,
-    },
-  }),
-  Link,
-  Image.configure({
-    upload: (files: File) => {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve(URL.createObjectURL(files))
-        }, 500)
-      })
-    },
-  }),
-  Video.configure({
-    upload: (files: File) => {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve(URL.createObjectURL(files))
-        }, 500)
-      })
-    },
-  }),
-  Blockquote.configure({ spacer: true }),
-  SlashCommand,
-  HorizontalRule,
-  Code.configure({
-    toolbar: false,
-  }),
-  CodeBlock.configure({ defaultTheme: "dracula" }),
-  ColumnActionButton,
-  Table,
-  ExportPdf.configure({ spacer: true }),
-  ImportWord.configure({
-    upload: (files: File[]) => {
-      const f = files.map((file) => ({
-        src: URL.createObjectURL(file),
-        alt: file.name,
-      }))
-      return Promise.resolve(f)
-    },
-  }),
-  ExportWord,
-  Excalidraw,
-  Mention,
-  Attachment.configure({
-    upload: (file: any) => {
-      // fake upload return base 64
-      const reader = new FileReader()
-      reader.readAsDataURL(file)
+function debounce(func: any, wait: number) {
+    let timeout: NodeJS.Timeout
+    return function (...args: any[]) {
+        clearTimeout(timeout)
+        // @ts-expect-error
+        timeout = setTimeout(() => func.apply(this, args), wait)
+    }
+}
 
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          const blob = convertBase64ToBlob(reader.result as string)
-          resolve(URL.createObjectURL(blob))
-        }, 300)
-      })
-    },
-  }),
-  Mermaid.configure({
-    upload: (file: any) => {
-      // fake upload return base 64
-      const reader = new FileReader()
-      reader.readAsDataURL(file)
-
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          const blob = convertBase64ToBlob(reader.result as string)
-          resolve(URL.createObjectURL(blob))
-        }, 300)
-      })
-    },
-  }),
-]
+const patchFile = (content: string) =>
+    fetch("/api/text-documents", {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ blob: content }),
+    })
 
 export default function Home() {
-  const { t } = useTranslation("translation")
-  const [content, setContent] = useState("")
+    const queryClient = useQueryClient()
+    const { t } = useTranslation("translation")
 
-  const handleChangeContent = (value: any) => {
-    setContent(value)
-  }
+    const [content, setContent] = useState("")
 
-  const handleSave = async () => {
-    const response = await fetch("/api/text-documents", {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ blob: content }),
+    const { data, isSuccess } = useQuery({
+        queryFn: () => defaultQueryFn({ queryKey: ["text-documents"] }),
+        queryKey: ["file"],
     })
-    console.log(response);
-  }
 
-  return (
-    <div className="flex min-h-screen bg-gradient-to-b from-pink-700 to-purple-700">
-      <section className="w-full py-32 md:py-48 flex flex-col items-center justify-center">
-        <h1 className="text-black">{t("title")}</h1>
-        <TestComponent />
-        <RichTextEditor
-          output="text"
-          content={content}
-          onChangeContent={handleChangeContent}
-          extensions={extensions}
-        />
-      <Button onClick={handleSave}>Save</Button>
-      </section>
+    const {
+        mutate: mutateFile,
+        isPending,
+        isSuccess: isSuccessSave,
+    } = useMutation({
+        mutationFn: () => patchFile(content),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["file"] })
+        },
+        onError: () => {
+            throw new Error("Error saving file")
+        },
+    })
 
-    </div>
-  )
+    const editorRef = useRef<{ editor: TipTapEditor } | null>(null)
+
+    const handleChange = useCallback(
+        debounce(() => {
+            if (editorRef.current?.editor) {
+                setContent(editorRef.current.editor.getText())
+            }
+        }, 300),
+        [],
+    )
+
+    useEffect(() => console.log(content), [content])
+
+    const handleSave = async () => mutateFile()
+
+    return (
+        <div className="flex min-h-screen bg-gradient-to-b from-pink-700 to-purple-700">
+            <section className="w-full py-32 md:py-48 flex flex-col items-center justify-center">
+                <h1 className="text-black">{t("title")}</h1>
+                {isSuccess && (
+                    <Editor
+                        onChange={handleChange}
+                        content={content ? content : data?.blob}
+                        ref={editorRef}
+                    />
+                )}
+                <Button onClick={handleSave} disabled={isPending}>
+                    {isPending ? <Loader2 /> : "Save"}
+                </Button>
+                {isSuccess && !isSuccessSave && (
+                    <div>
+                        Initial data from backend: {JSON.stringify(data.blob)}
+                    </div>
+                )}
+                {isSuccessSave && isSuccess && (
+                    <div>
+                        Successfully saved to backed data:{" "}
+                        {JSON.stringify(data.blob)}
+                    </div>
+                )}
+            </section>
+        </div>
+    )
 }
