@@ -8,8 +8,24 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { defaultQueryFn } from "@/api"
 import { Loader2 } from "lucide-react"
 
+import { AppSidebar } from "@/components/app-sidebar"
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbPage,
+    BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+import { Separator } from "@/components/ui/separator"
+import {
+    SidebarInset,
+    SidebarProvider,
+    SidebarTrigger,
+} from "@/components/ui/sidebar"
+
 function debounce(func: any, wait: number) {
-    let timeout: NodeJS.Timeout
+    let timeout: number
     return function (...args: any[]) {
         clearTimeout(timeout)
         // @ts-expect-error
@@ -67,31 +83,61 @@ export default function Home() {
     const handleSave = async () => mutateFile()
 
     return (
-        <div className="flex min-h-screen bg-gradient-to-b from-pink-700 to-purple-700">
-            <section className="w-full py-32 md:py-48 flex flex-col items-center justify-center">
-                <h1 className="text-black">{t("title")}</h1>
-                {isSuccess && (
-                    <Editor
-                        onChange={handleChange}
-                        content={content ? content : data?.blob}
-                        ref={editorRef}
-                    />
-                )}
-                <Button onClick={handleSave} disabled={isPending}>
-                    {isPending ? <Loader2 /> : "Save"}
-                </Button>
-                {isSuccess && !isSuccessSave && (
-                    <div>
-                        Initial data from backend: {JSON.stringify(data.blob)}
+        <SidebarProvider>
+            <AppSidebar />
+            <SidebarInset>
+                <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+                    <div className="flex items-center gap-2 px-4">
+                        <SidebarTrigger className="-ml-1" />
+                        <Separator
+                            orientation="vertical"
+                            className="mr-2 h-4"
+                        />
+                        <Breadcrumb>
+                            <BreadcrumbList>
+                                <BreadcrumbItem className="hidden md:block">
+                                    <BreadcrumbLink href="#">
+                                        Files
+                                    </BreadcrumbLink>
+                                </BreadcrumbItem>
+                                <BreadcrumbSeparator className="hidden md:block" />
+                                <BreadcrumbItem>
+                                    <BreadcrumbPage>fileId</BreadcrumbPage>
+                                </BreadcrumbItem>
+                            </BreadcrumbList>
+                        </Breadcrumb>
                     </div>
-                )}
-                {isSuccessSave && isSuccess && (
-                    <div>
-                        Successfully saved to backed data:{" "}
-                        {JSON.stringify(data.blob)}
+                </header>
+                <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+                    <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min">
+                        <section className="w-full py-32 md:py-48 flex flex-col items-center justify-center">
+                            <h1 className="text-black">{t("title")}</h1>
+                            {isSuccess && (
+                                <Editor
+                                    onChange={handleChange}
+                                    content={content ? content : data?.blob}
+                                    ref={editorRef}
+                                />
+                            )}
+                            <Button onClick={handleSave} disabled={isPending}>
+                                {isPending ? <Loader2 /> : "Save"}
+                            </Button>
+                            {isSuccess && !isSuccessSave && (
+                                <div>
+                                    Initial data from backend:{" "}
+                                    {JSON.stringify(data.blob)}
+                                </div>
+                            )}
+                            {isSuccessSave && isSuccess && (
+                                <div>
+                                    Successfully saved to backed data:{" "}
+                                    {JSON.stringify(data.blob)}
+                                </div>
+                            )}
+                        </section>
                     </div>
-                )}
-            </section>
-        </div>
+                </div>
+            </SidebarInset>
+        </SidebarProvider>
     )
 }
