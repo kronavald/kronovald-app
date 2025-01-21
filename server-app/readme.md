@@ -8,6 +8,14 @@ This application implements the REST API for the Kronovald website.
 - Database `PostgreSQL 17`
 - ORM `Prisma` - [documentation](https://www.prisma.io/docs/orm/prisma-client) | [CLI](https://www.prisma.io/docs/orm/tools/prisma-cli)
 
+## Architecture
+
+The application consists of `CRUD` resources with `REST` controllers.
+
+Usually this is a pack of three files: `service`, `controller` and `module` that exports them.
+
+The service works with the database through `PrismaClient` as shown in this section of the documentation: [use-prisma-client-in-your-nestjs-services](https://docs.nestjs.com/recipes/prisma#use-prisma-client-in-your-nestjs-services).
+
 ## Initializing the working environment
 
 
