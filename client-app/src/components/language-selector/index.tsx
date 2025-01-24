@@ -38,10 +38,12 @@ const LanguageSelector = () => {
         <div className="flex items-end">
             <Popover>
                 <PopoverTrigger>
-                    <div className="flex items-center gap-1 fill-black text-black">
+                    <div className="flex items-center gap-1 text-primary">
                         <Languages size={18} />
-                        {currentLanguage &&
-                            getLocaleDisplayName(currentLanguage)}
+                        <span className="text-primary">
+                            {currentLanguage &&
+                                getLocaleDisplayName(currentLanguage)}
+                        </span>
                         <ChevronDown size={12} />
                     </div>
                 </PopoverTrigger>
@@ -68,7 +70,7 @@ const LanguageSelector = () => {
                                         isSelected && "font-bold text-primary",
                                     )}
                                 >
-                                    {name}
+                                    <span className="text-primary">{name}</span>
                                 </span>
                             </div>
                         )

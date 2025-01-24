@@ -30,115 +30,109 @@ import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 import { Separator } from "@radix-ui/react-separator"
 import { ModeToggle } from "./mode-toggle"
+import { t } from "i18next"
 
 // This is sample data.
 const data = {
-    user: {
-        name: "shadcn",
-        email: "m@example.com",
-        avatar: "/avatars/shadcn.jpg",
-    },
-    teams: [
-        {
-            name: "Acme Inc",
-            logo: GalleryVerticalEnd,
-            plan: "Enterprise",
-        },
-        {
-            name: "Acme Corp.",
-            logo: AudioWaveform,
-            plan: "Startup",
-        },
-        {
-            name: "Evil Corp.",
-            logo: Command,
-            plan: "Free",
-        },
-    ],
     navMain: [
         {
-            title: "Playground",
+            title: "Files",
             url: "#",
             icon: SquareTerminal,
             isActive: true,
             items: [
                 {
-                    title: "History",
-                    url: "#",
+                    title: "file1",
+                    url: "file1",
                 },
                 {
-                    title: "Starred",
-                    url: "#",
+                    title: "file2",
+                    url: "file2",
                 },
                 {
-                    title: "Settings",
-                    url: "#",
-                },
-            ],
-        },
-        {
-            title: "Models",
-            url: "#",
-            icon: Bot,
-            items: [
-                {
-                    title: "Genesis",
-                    url: "#",
+                    title: "file3",
+                    url: "file3",
                 },
                 {
-                    title: "Explorer",
-                    url: "#",
+                    title: "file4",
+                    url: "file4",
                 },
                 {
-                    title: "Quantum",
-                    url: "#",
-                },
-            ],
-        },
-        {
-            title: "Documentation",
-            url: "#",
-            icon: BookOpen,
-            items: [
-                {
-                    title: "Introduction",
-                    url: "#",
+                    title: "file5",
+                    url: "file5",
                 },
                 {
-                    title: "Get Started",
-                    url: "#",
+                    title: "file6",
+                    url: "file6",
                 },
                 {
-                    title: "Tutorials",
-                    url: "#",
+                    title: "file7",
+                    url: "file7",
+                },
+                { title: "file8", url: "file8" },
+                {
+                    title: "file9",
+                    url: "file9",
+                },
+                { title: "file10", url: "file10" },
+                { title: "file11", url: "file11" },
+                { title: "file12", url: "file12" },
+                { title: "file13", url: "file13" },
+                { title: "file14", url: "file14" },
+                { title: "file15", url: "file15" },
+                { title: "file16", url: "file16" },
+                { title: "file17", url: "file17" },
+                { title: "file18", url: "file18" },
+                { title: "file19", url: "file19" },
+                { title: "file20", url: "file20" },
+                { title: "file21", url: "file21" },
+                { title: "file22", url: "file22" },
+                {
+                    title: "file1",
+                    url: "file1",
                 },
                 {
-                    title: "Changelog",
-                    url: "#",
-                },
-            ],
-        },
-        {
-            title: "Settings",
-            url: "#",
-            icon: Settings2,
-            items: [
-                {
-                    title: "General",
-                    url: "#",
+                    title: "file2",
+                    url: "file2",
                 },
                 {
-                    title: "Team",
-                    url: "#",
+                    title: "file3",
+                    url: "file3",
                 },
                 {
-                    title: "Billing",
-                    url: "#",
+                    title: "file4",
+                    url: "file4",
                 },
                 {
-                    title: "Limits",
-                    url: "#",
+                    title: "file5",
+                    url: "file5",
                 },
+                {
+                    title: "file6",
+                    url: "file6",
+                },
+                {
+                    title: "file7",
+                    url: "file7",
+                },
+                { title: "file8", url: "file8" },
+                {
+                    title: "file9",
+                    url: "file9",
+                },
+                { title: "file10", url: "file10" },
+                { title: "file11", url: "file11" },
+                { title: "file12", url: "file12" },
+                { title: "file13", url: "file13" },
+                { title: "file14", url: "file14" },
+                { title: "file15", url: "file15" },
+                { title: "file16", url: "file16" },
+                { title: "file17", url: "file17" },
+                { title: "file18", url: "file18" },
+                { title: "file19", url: "file19" },
+                { title: "file20", url: "file20" },
+                { title: "file21", url: "file21" },
+                { title: "file22", url: "file22" },
             ],
         },
     ],
