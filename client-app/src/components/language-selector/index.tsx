@@ -40,10 +40,7 @@ const LanguageSelector = () => {
                 <PopoverTrigger>
                     <div className="flex items-center gap-1 text-primary">
                         <Languages size={18} />
-                        <span className="text-primary">
-                            {currentLanguage &&
-                                getLocaleDisplayName(currentLanguage)}
-                        </span>
+                        <span className="text-primary">{currentLanguage && getLocaleDisplayName(currentLanguage)}</span>
                         <ChevronDown size={12} />
                     </div>
                 </PopoverTrigger>
@@ -64,12 +61,7 @@ const LanguageSelector = () => {
                                     `relative w-auto cursor-pointer select-none px-4 py-2 text-black hover:bg-zinc-200`,
                                 )}
                             >
-                                <span
-                                    className={cn(
-                                        `block truncate`,
-                                        isSelected && "font-bold text-primary",
-                                    )}
-                                >
+                                <span className={cn(`block truncate`, isSelected && "font-bold text-primary")}>
                                     <span className="text-primary">{name}</span>
                                 </span>
                             </div>

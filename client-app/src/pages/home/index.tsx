@@ -18,11 +18,7 @@ import {
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { Separator } from "@/components/ui/separator"
-import {
-    SidebarInset,
-    SidebarProvider,
-    SidebarTrigger,
-} from "@/components/ui/sidebar"
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 
 function debounce(func: any, wait: number) {
     let timeout: number
@@ -89,16 +85,11 @@ export default function Home() {
                 <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
                     <div className="flex items-center gap-2 px-4">
                         <SidebarTrigger className="-ml-1" />
-                        <Separator
-                            orientation="vertical"
-                            className="mr-2 h-4"
-                        />
+                        <Separator orientation="vertical" className="mr-2 h-4" />
                         <Breadcrumb>
                             <BreadcrumbList>
                                 <BreadcrumbItem className="hidden md:block">
-                                    <BreadcrumbLink href="#">
-                                        Files
-                                    </BreadcrumbLink>
+                                    <BreadcrumbLink href="#">Files</BreadcrumbLink>
                                 </BreadcrumbItem>
                                 <BreadcrumbSeparator className="hidden md:block" />
                                 <BreadcrumbItem>
@@ -123,16 +114,10 @@ export default function Home() {
                                 {isPending ? <Loader2 /> : "Save"}
                             </Button>
                             {isSuccess && !isSuccessSave && (
-                                <div>
-                                    Initial data from backend:{" "}
-                                    {JSON.stringify(data.blob)}
-                                </div>
+                                <div>Initial data from backend: {JSON.stringify(data.blob)}</div>
                             )}
                             {isSuccessSave && isSuccess && (
-                                <div>
-                                    Successfully saved to backed data:{" "}
-                                    {JSON.stringify(data.blob)}
-                                </div>
+                                <div>Successfully saved to backed data: {JSON.stringify(data.blob)}</div>
                             )}
                         </section>
                     </div>
