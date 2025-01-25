@@ -1,53 +1,37 @@
 import { Injectable } from "@nestjs/common"
-import { CreateTextDocumentDto } from "./dto/create-text-document.dto"
-import { UpdateTextDocumentDto } from "./dto/update-text-document.dto"
-import { writeFileSync, mkdirSync, readFileSync } from "node:fs"
-import { dirname } from "node:path"
-import { FileNotExistsError } from "./entities/file-not-exists.class"
-
-const filepath = "./.temp/file.txt"
+import { PrismaService } from "src/prisma.service"
+import { Prisma } from "@prisma/client"
 
 @Injectable()
 export class TextDocumentsService {
-    create(createTextDocumentDto: CreateTextDocumentDto) {
-        mkdirSync(dirname(filepath), { recursive: true })
+    constructor(private prisma: PrismaService) {}
 
-        writeFileSync(filepath, createTextDocumentDto?.blob ?? "", {
-            encoding: "utf-8",
-        })
+    public findOne(where: Prisma.TextDocumentWhereUniqueInput) {
+        return this.prisma.textDocument.findUnique({ where })
     }
 
-    findAll() {
-        return `This action returns all textDocuments`
+    public findAll(parameters: {
+        skip?: number
+        take?: number
+        cursor?: Prisma.TextDocumentWhereUniqueInput
+        where?: Prisma.TextDocumentWhereInput
+        orderBy?: Prisma.TextDocumentOrderByWithRelationInput
+    }) {
+        const { skip, take, cursor, where, orderBy } = parameters
+        return this.prisma.textDocument.findMany({ skip, take, cursor, where, orderBy })
     }
 
-    /** @throws {FileNotExistsError} */
-    findOne() {
-        try {
-            return {
-                blob: readFileSync(filepath, {
-                    encoding: "utf-8",
-                }),
-            }
-        } catch (error) {
-            if (error?.code === "ENOENT") throw new FileNotExistsError()
-            else throw error
-        }
+    public create(data: Prisma.TextDocumentCreateInput) {
+        return this.prisma.textDocument.create({ data })
     }
 
-    /** @throws {FileNotExistsError} */
-    update(updateTextDocumentDto: UpdateTextDocumentDto) {
-        try {
-            writeFileSync(filepath, updateTextDocumentDto.blob, {
-                encoding: "utf-8",
-            })
-        } catch (error) {
-            if (error?.code === "ENOENT") throw new FileNotExistsError()
-            else throw error
-        }
+    public update(parameters: { where: Prisma.TextDocumentWhereUniqueInput; data: Prisma.TextDocumentUpdateInput }) {
+        const { where, data } = parameters
+
+        return this.prisma.textDocument.update({ data, where })
     }
 
-    remove(id: number) {
-        return `This action removes a #${id} textDocument`
+    public remove(where: Prisma.TextDocumentWhereUniqueInput) {
+        return this.prisma.textDocument.delete({ where })
     }
 }
