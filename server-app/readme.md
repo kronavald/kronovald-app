@@ -1,76 +1,75 @@
-# Server application of the Kronovald project
+# 🚀 Kronovald Backend
 
-This application implements the REST API for the Kronovald website.
+This application implements the **REST API** for the Kronovald frontend.
 
-## Project stack
+## 🛠️ Tech Stack
 
-- Framework `Nest.js` - [documentation](https://docs.nestjs.com) | [CLI](https://docs.nestjs.com/cli/overview)
-- Database `PostgreSQL 17`
-- ORM `Prisma` - [documentation](https://www.prisma.io/docs/orm/prisma-client) | [CLI](https://www.prisma.io/docs/orm/tools/prisma-cli)
+- **Framework:** `Nest.js` - [Docs](https://docs.nestjs.com) | [CLI](https://docs.nestjs.com/cli/overview)
+- **Database:** `PostgreSQL 17`
+- **ORM:** `Prisma` - [Docs](https://www.prisma.io/docs/orm/prisma-client) | [CLI](https://www.prisma.io/docs/orm/tools/prisma-cli)
 
-## Architecture
+## 🏗️ Architecture
 
-The application consists of `CRUD` resources with `REST` controllers.
+The application follows a modular architecture based on **CRUD resources** with `REST` controllers.
+Each resource typically consists of three main files: `service`, `controller`, and `module`, which are exported together.
 
-Usually this is a pack of three files: `service`, `controller` and `module` that exports them.
+The **service layer** interacts with the database using `PrismaClient`, as described in the official documentation: [Using Prisma Client in NestJS](https://docs.nestjs.com/recipes/prisma#use-prisma-client-in-your-nestjs-services).
 
-The service works with the database through `PrismaClient` as shown in this section of the documentation: [use-prisma-client-in-your-nestjs-services](https://docs.nestjs.com/recipes/prisma#use-prisma-client-in-your-nestjs-services).
+## ⚙️ Setting Up the Development Environment
 
-## Initializing the working environment
+### 📦 Install Dependencies
 
+Navigate to the `server-app/` directory and install the necessary dependencies:
 
-### Dependencies
-
-The application root is located in the `server-app/` directory. Go to this directory and run the following command in a terminal to install the project dependencies:
-
-```console
+```bash
+cd server-app
 npm install
 ```
 
-### Command-line interfaces
+### 🛠️ Install CLI Tools
 
-The work uses CLI of PrismaORM and CLI of Nest.js framework.
+The project utilizes both **Nest.js CLI** and **Prisma CLI** for development tasks. Install them globally and check their usage:
 
-Let's install the CLI of the Nest.js framework and call up help on its use. Run the following commands in a terminal:
-
-```console
-npm install -g @nestjs/cli
+```bash
+npm install -g @nestjs/cli prisma
 
 nest --help
-```
-
-Let's install the CLI of the PrismaORM and call up help on its use. Run the following commands in a terminal:
-
-```console
-npm install -global prisma
-
 prisma --help
 ```
 
-### Connect Database
+### 🗄️ Database Configuration
 
-Next, write the [connection string](https://www.connectionstrings.com/postgresql/) to the existing database in the `server-app/.env` file. Example:
+Define the [PostgreSQL connection string](https://www.connectionstrings.com/postgresql/) in the `.env` file located in `server-app/`. Example:
 
-```env
-# file server-app/.env
-
+```ini
+# server-app/.env
 DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/MYDATABASE?schema=public"
 ```
 
-### Actualize database
+### 🔄 Apply Database Migrations
 
-Perform [migrations via Prisma CLI](https://www.prisma.io/docs/orm/reference/prisma-cli-reference#migrate-dev)
+Run the following command to apply database migrations via Prisma CLI:
 
-```console
+```bash
 prisma migrate dev
 ```
 
-### Start server
+### 🚀 Start the Server
 
-Start the http server provided by Nest.js using the following command in the terminal:
+Run the development server using:
 
-```console
+```bash
 npm run start:dev
 ```
 
-Now call the API index endpoint by going to the `http://localhost:3000` page in your browser. If the json object `{"data":"Hello World!"}` is returned to you, then congratulations, you have successfully initialized the working environment and launched the dev server! 🥳 🎉
+The backend will be available at: `http://localhost:3000`
+
+To verify that the API is working, open your browser and visit `http://localhost:3000`. If you see the JSON response:
+
+```json
+{"data":"Hello World!"}
+```
+
+## 📜 License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more details.
