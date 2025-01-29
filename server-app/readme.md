@@ -34,7 +34,7 @@ The work uses CLI of PrismaORM and CLI of Nest.js framework.
 Let's install the CLI of the Nest.js framework and call up help on its use. Run the following commands in a terminal:
 
 ```console
-npm install -global nest
+npm install -g @nestjs/cli
 
 nest --help
 ```
