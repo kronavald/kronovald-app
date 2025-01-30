@@ -12,7 +12,7 @@
 ## 📂 Project Structure
 
 - **`client-app/`** — Frontend application built with **React**, **TypeScript**, and **Shadcn/UI**. Installation and setup details are available in its README.
-- **`server-app/`** — Backend application developed with NestJS, Prisma ORM, and PostgreSQL as the database. Installation and setup details are available in its README.
+- **`server-app/`** — Backend application developed with **NestJS**, **Prisma ORM**, and **PostgreSQL** as the database. Installation and setup details are available in its README.
 
 ## 🤝 Contributing
 

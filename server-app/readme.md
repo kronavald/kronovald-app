@@ -1,6 +1,6 @@
 # 🚀 Kronovald Backend
 
-This application implements the **REST API** for the Kronovald frontend.
+This application on Node.js implements business logic and provides access to it through Web-API.
 
 ## 🛠️ Tech Stack
 
@@ -10,8 +10,8 @@ This application implements the **REST API** for the Kronovald frontend.
 
 ## 🏗️ Architecture
 
-The application follows a modular architecture based on **CRUD resources** with `REST` controllers.
-Each resource typically consists of three main files: `service`, `controller`, and `module`, which are exported together.
+The application follows a modular architecture based on `CRUD Resources` with `REST` controllers.
+Each resource typically consists of three main files: `service`, `controller`, and `module` which controls the dependencies.
 
 The **service layer** interacts with the database using `PrismaClient`, as described in the official documentation: [Using Prisma Client in NestJS](https://docs.nestjs.com/recipes/prisma#use-prisma-client-in-your-nestjs-services).
 
@@ -62,13 +62,15 @@ Run the development server using:
 npm run start:dev
 ```
 
-The backend will be available at: `http://localhost:3000`
+To verify that the API is working, open your browser and visit `http://localhost:3000`.
 
-To verify that the API is working, open your browser and visit `http://localhost:3000`. If you see the JSON response:
+If you see a network response with the content of:
 
 ```json
-{"data":"Hello World!"}
+{ "data": "Hello World!" }
 ```
+
+...then you succeeded! 🥳 🎉
 
 ## 📜 License
 
