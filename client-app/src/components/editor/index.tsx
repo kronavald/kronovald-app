@@ -179,6 +179,7 @@ const Editor = ({ initialContent, onChange }: EditorProps) => {
 
     useEffect(() => {
         editor?.commands.setContent(initialContent)
+        onChange(initialContent)
     }, [initialContent])
 
     return (

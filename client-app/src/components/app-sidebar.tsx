@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next"
 import { Link } from "react-router"
 import { Separator } from "@radix-ui/react-separator"
 import { ModeToggle } from "./mode-toggle"
-import { useFilesListQuery } from "@/api/text-documents"
+import { useFilesListQuery } from "@/api/text-documents/queries"
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     const { t } = useTranslation()
