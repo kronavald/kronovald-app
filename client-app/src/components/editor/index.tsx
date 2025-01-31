@@ -1,4 +1,4 @@
-import { forwardRef, memo } from "react"
+import { memo, useEffect } from "react"
 import RichTextEditor, {
     BaseKit,
     Blockquote,
@@ -43,6 +43,7 @@ import RichTextEditor, {
     Attachment,
     Mermaid,
     UseEditorOptions,
+    useEditorState,
 } from "reactjs-tiptap-editor"
 
 import { convertBase64ToBlob } from "@/lib/utils"
@@ -158,8 +159,8 @@ const extensions = [
 ]
 
 export interface EditorProps {
-    content?: string
-    onChange?: (val: any) => void
+    initialContent: string
+    onChange: (val: any) => void
 }
 
 const customOptions: UseEditorOptions = {
@@ -173,20 +174,24 @@ const customOptions: UseEditorOptions = {
     shouldRerenderOnTransaction: false,
 }
 
-const Editor = ({ content = "", onChange }: EditorProps, ref: any) => {
-    // console.count("editor render")
+const Editor = ({ initialContent, onChange }: EditorProps) => {
+    const { editor, editorRef } = useEditorState()
+
+    useEffect(() => {
+        editor?.commands.setContent(initialContent)
+        onChange(initialContent)
+    }, [initialContent])
+
     return (
         <RichTextEditor
             output="text"
-            ref={ref}
-            content={content}
-            onChangeContent={onChange}
+            content={initialContent}
+            onChangeContent={(val) => onChange(val)}
+            ref={editorRef}
             extensions={extensions}
             useEditorOptions={customOptions}
         />
     )
 }
 
-const EditorWithReff = forwardRef(Editor)
-
-export default memo(EditorWithReff)
+export default memo(Editor)
