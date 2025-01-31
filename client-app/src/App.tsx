@@ -1,14 +1,24 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
-import { RouterProvider } from "react-router-dom"
-import { createRouter } from "./router"
-import { useMemo } from "react"
+import { Route, BrowserRouter, Routes } from "react-router"
+import Home from "./pages/home"
+// import FileEditor from "./pages/home/FileEditor"
+import ErrorPage from "./components/error-page"
+import About from "./pages/about"
+
+const queryClient = new QueryClient({})
 
 function App() {
-    const queryClient = useMemo(() => new QueryClient({}), [])
     return (
         <QueryClientProvider client={queryClient}>
-            <RouterProvider router={createRouter()} />
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Home />} errorElement={<ErrorPage />}>
+                        {/* <Route path=":fileId" element={<FileEditor />} /> */}
+                    </Route>
+                    <Route path="about" element={<About />} errorElement={<ErrorPage />} />
+                </Routes>
+            </BrowserRouter>
             <ReactQueryDevtools />
         </QueryClientProvider>
     )

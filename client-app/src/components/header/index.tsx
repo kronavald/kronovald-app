@@ -3,7 +3,7 @@ import { LanguageSelector } from "../language-selector"
 import { Button } from "../ui/button"
 import { useTranslation } from "react-i18next"
 import { Github } from "lucide-react"
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router"
 
 interface IProps {
     leftNode?: ReactNode
