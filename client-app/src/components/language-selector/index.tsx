@@ -38,14 +38,19 @@ const LanguageSelector = () => {
         <div className="flex items-end">
             <Popover>
                 <PopoverTrigger>
-                    <div className="flex items-center gap-1 fill-black text-black">
+                    <div className="flex items-center gap-1 text-primary">
                         <Languages size={18} />
-                        {currentLanguage && getLocaleDisplayName(currentLanguage)}
+                        <span className="text-primary">{currentLanguage && getLocaleDisplayName(currentLanguage)}</span>
                         <ChevronDown size={12} />
                     </div>
                 </PopoverTrigger>
 
-                <PopoverContent className="absolute mt-1 max-h-60 w-auto overflow-auto rounded-md bg-white p-0 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                <PopoverContent
+                    side="top"
+                    sideOffset={90}
+                    align="start"
+                    className="absolute mt-1 max-h-60 w-auto overflow-auto rounded-md bg-white p-0 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+                >
                     {localesAndNames.map(({ locale, name }) => {
                         const isSelected = currentLanguage === locale
                         return (
@@ -57,7 +62,7 @@ const LanguageSelector = () => {
                                 )}
                             >
                                 <span className={cn(`block truncate`, isSelected && "font-bold text-primary")}>
-                                    {name}
+                                    <span className="text-primary">{name}</span>
                                 </span>
                             </div>
                         )
