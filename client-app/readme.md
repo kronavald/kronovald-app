@@ -6,9 +6,9 @@ This application for web browsers implements a client interface.
 
 - **Framework:** [`React`](https://react.dev/) - A JavaScript library for building user interfaces.
 - **Router:** [`React Router`](https://reactrouter.com/) is router.
-- **State Manager:** [`React Router`](https://tanstack.com/query/) is state manager.
+- **State Manager:** [`TanStack Query`](https://tanstack.com/query/) is state manager.
 - **UI Library:** [`Shadcn/UI`](https://ui.shadcn.com/) - A modern and customizable component library.
-- **i18n:** [`React Router`](https://www.i18next.com/) is internationalization framework.
+- **i18n:** [`i18next`](https://www.i18next.com/) is internationalization framework.
 
 ## ⚙️ Setting Up the Development Environment
 
