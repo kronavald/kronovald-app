@@ -1,14 +1,10 @@
-import React, { ReactNode } from "react"
 import { LanguageSelector } from "../language-selector"
 import { Button } from "../ui/button"
 import { useTranslation } from "react-i18next"
 import { Github } from "lucide-react"
 import { Link, useLocation } from "react-router"
 
-interface IProps {
-    leftNode?: ReactNode
-}
-export function Header(props: IProps) {
+export function Header() {
     const { t } = useTranslation()
     const location = useLocation()
 

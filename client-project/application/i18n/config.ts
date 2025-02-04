@@ -9,11 +9,6 @@ i18next
     .use(I18NextHttpBackend)
     .use(LanguageDetector)
     .use(initReactI18next)
-    .init({
-        debug: true,
-        fallbackLng: {
-            default: ["en"],
-        },
-    })
+    .init({ debug: true, fallbackLng: { default: ["en"] } })
 
 export default i18next
