@@ -31,4 +31,6 @@ export default defineConfig({
             },
         },
     },
+    publicDir: path.resolve(__dirname, "./resources/"),
+    build: { outDir: path.resolve(__dirname, "./distribution/") }
 })
