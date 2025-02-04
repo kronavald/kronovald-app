@@ -9,7 +9,7 @@
     /* shadcn */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./application/*"]
     },
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -25,5 +25,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"]
+  "include": ["application"]
 }
