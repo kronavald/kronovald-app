@@ -19,10 +19,10 @@ The **service layer** interacts with the database using `PrismaClient`, as descr
 
 ### 📦 Install Dependencies
 
-Navigate to the `server-app/` directory and install the necessary dependencies:
+Navigate to the `server-project/` directory and install the necessary dependencies:
 
 ```bash
-cd server-app
+cd server-project
 npm install
 ```
 
@@ -39,10 +39,10 @@ prisma --help
 
 ### 🗄️ Database Configuration
 
-Define the [PostgreSQL connection string](https://www.connectionstrings.com/postgresql/) in the `.env` file located in `server-app/`. Example:
+Define the [PostgreSQL connection string](https://www.connectionstrings.com/postgresql/) in the `.env` file located in `server-project/`. Example:
 
 ```ini
-# server-app/.env
+# server-project/.env
 DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/MYDATABASE?schema=public"
 ```
 

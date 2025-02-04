@@ -14,10 +14,10 @@ This application for web browsers implements a client interface.
 
 ### 📦 Install Dependencies
 
-Navigate to the `client-app/` directory and install the necessary dependencies:
+Navigate to the `client-project/` directory and install the necessary dependencies:
 
 ```bash
-cd client-app
+cd client-project
 npm install
 ```
 
