@@ -1,10 +1,12 @@
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
-import "@/index.css"
-import App from "@/App"
-import "./i18n/config"
+import { App } from "./app.component"
 
-createRoot(document.getElementById("root")!).render(
+const rootElement = document.getElementById("root")
+
+if (rootElement === null) throw new Error("Invalid document!")
+
+createRoot(rootElement).render(
     <StrictMode>
         <App />
     </StrictMode>,
