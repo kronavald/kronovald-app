@@ -11,7 +11,7 @@ import { Separator } from "@/components/ui/separator"
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { Outlet, useParams } from "react-router"
 
-export default function Home() {
+export function HomePage() {
     const { fileId } = useParams()
 
     return (
