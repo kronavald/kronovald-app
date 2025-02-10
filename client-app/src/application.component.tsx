@@ -5,10 +5,11 @@ import { ErrorPage } from "./error-page/error-page.component"
 import { ThemeProvider } from "./components/theme-provider"
 import { HomePage } from "./home-page/home-page.component"
 import { FileEditorWrapper } from "./pages/home/FileEditor"
+import "@/application.component.css"
 
 const queryClient = new QueryClient({})
 
-function App() {
+export function Application() {
     return (
         <QueryClientProvider client={queryClient}>
             <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
@@ -24,5 +25,3 @@ function App() {
         </QueryClientProvider>
     )
 }
-
-export default App
