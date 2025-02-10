@@ -11,7 +11,6 @@ import {
     SidebarRail,
     useSidebar,
 } from "@/components/ui/sidebar"
-import { LanguageSelector } from "./language-selector"
 import { Button } from "./ui/button"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router"
@@ -56,7 +55,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                         </a>
                     </Button>
                     <ModeToggle />
-                    <LanguageSelector />
                 </div>
             </SidebarFooter>
             <SidebarRail />

@@ -1,4 +1,3 @@
-import { LanguageSelector } from "../language-selector"
 import { Button } from "../ui/button"
 import { useTranslation } from "react-i18next"
 import { Github } from "lucide-react"
@@ -25,7 +24,6 @@ export function Header() {
                 )}
             </div>
             <div className="flex items-center gap-4">
-                <LanguageSelector />
                 <Button size={"icon"} className="rounded-full">
                     <a href="https://github.com/kronavald/kronovald" target="_blank" rel="noreferrer">
                         <Github />
