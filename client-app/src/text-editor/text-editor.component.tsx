@@ -45,10 +45,7 @@ import RichTextEditor, {
     UseEditorOptions,
     useEditorState,
 } from "reactjs-tiptap-editor"
-
 import { convertBase64ToBlob } from "@/lib/utils"
-
-// Import CSS
 import "reactjs-tiptap-editor/style.css"
 
 const extensions = [
@@ -143,7 +140,6 @@ const extensions = [
             })
         },
     }),
-    // диаграммы mermaid
     Mermaid.configure({
         upload: (file: File) => {
             const reader = new FileReader()
@@ -158,23 +154,17 @@ const extensions = [
     }),
 ]
 
-export interface EditorProps {
+export interface ITextEditorProperties {
     initialContent: string
     onChange: (val: any) => void
 }
 
-const customOptions: UseEditorOptions = {
-    // onUpdate: ({ editor }) => console.log('Content updated:', editor.getText()),
-    // onSelectionUpdate: ({ editor }) => console.log('Selection updated:', editor.getText()),
-    // onFocus: () => console.log('Editor focused'),
-    // onBlur: () => console.log('Editor blurred'),
-    // editable: true,
-    // autofocus: 'start',
+const options: UseEditorOptions = {
     immediatelyRender: true,
     shouldRerenderOnTransaction: false,
 }
 
-const Editor = ({ initialContent, onChange }: EditorProps) => {
+function InternalTextEditor({ initialContent, onChange }: ITextEditorProperties) {
     const { editor, editorRef } = useEditorState()
 
     useEffect(() => {
@@ -189,9 +179,9 @@ const Editor = ({ initialContent, onChange }: EditorProps) => {
             onChangeContent={(val) => onChange(val)}
             ref={editorRef}
             extensions={extensions}
-            useEditorOptions={customOptions}
+            useEditorOptions={options}
         />
     )
 }
 
-export default memo(Editor)
+export const TextEditor = memo(InternalTextEditor)

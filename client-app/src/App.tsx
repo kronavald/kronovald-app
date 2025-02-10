@@ -4,7 +4,7 @@ import { Route, BrowserRouter, Routes } from "react-router"
 import { ErrorPage } from "./error-page/error-page.component"
 import { ThemeProvider } from "./components/theme-provider"
 import { HomePage } from "./home-page/home-page.component"
-import FileEditor from "./pages/home/FileEditor"
+import { FileEditorWrapper } from "./pages/home/FileEditor"
 
 const queryClient = new QueryClient({})
 
@@ -15,7 +15,7 @@ function App() {
                 <BrowserRouter>
                     <Routes>
                         <Route path="/" element={<HomePage />} errorElement={<ErrorPage />}>
-                            <Route path=":fileId" element={<FileEditor />} />
+                            <Route path=":fileId" element={<FileEditorWrapper />} />
                         </Route>
                     </Routes>
                 </BrowserRouter>

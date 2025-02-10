@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react"
 import { Button } from "@/components/ui/button"
-import Editor from "@/components/editor"
+import { TextEditor } from "@/text-editor/text-editor.component"
 import { Loader2 } from "lucide-react"
 
 import {
@@ -14,7 +14,7 @@ import { useNavigate, useParams } from "react-router"
 
 const PARAM_NEW = "new"
 
-const FileEditorController = ({ id }: { id: string }) => {
+function FileEditorController({ id }: { id: string }) {
     const navigate = useNavigate()
     const [content, setContent] = useState("")
 
@@ -36,8 +36,8 @@ const FileEditorController = ({ id }: { id: string }) => {
             <div>{isFetching && <Loader2 className="animate-spin" />}</div>
             <div>{data && `Data from API: ${data?.content}`}</div>
             <div>{`Local state: ${content}`}</div>
-            {id === PARAM_NEW && <Editor onChange={handleChange} initialContent={"New file content"} />}
-            {data && <Editor onChange={handleChange} initialContent={data.content} />}
+            {id === PARAM_NEW && <TextEditor onChange={handleChange} initialContent={"New file content"} />}
+            {data && <TextEditor onChange={handleChange} initialContent={data.content} />}
             <div className="mt-2 flex flex-row gap-2">
                 {id === PARAM_NEW ? (
                     <Button
@@ -75,7 +75,7 @@ const FileEditorController = ({ id }: { id: string }) => {
     )
 }
 
-const FileEditorWrapper = () => {
+export function FileEditorWrapper() {
     const { fileId } = useParams()
 
     if (!fileId) {
@@ -93,5 +93,3 @@ const FileEditorWrapper = () => {
         </div>
     )
 }
-
-export default FileEditorWrapper
