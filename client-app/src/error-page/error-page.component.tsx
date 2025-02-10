@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next"
 import { Link, useRouteError } from "react-router"
-import { Button } from "../ui/button"
+import { Button } from "../components/ui/button"
 
-export default function ErrorPage() {
+export function ErrorPage() {
     const error = useRouteError() as any
     const { t } = useTranslation("notfound")
 
