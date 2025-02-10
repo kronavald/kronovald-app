@@ -2,7 +2,6 @@ import { useCallback, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { TextEditor } from "@/text-editor/text-editor.component"
 import { Loader2 } from "lucide-react"
-
 import {
     useCreateFileMutation,
     useDeleteFileMutation,
@@ -14,16 +13,31 @@ import { useNavigate, useParams } from "react-router"
 
 const PARAM_NEW = "new"
 
-function FileEditorController({ id }: { id: string }) {
+export function FileEditor() {
+    const { fileId } = useParams()
+
+    if (!fileId) throw new Error("fileId is undefined")
+
+    return (
+        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+            <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min">
+                <section className="w-full py-32 md:py-48 flex flex-col items-center justify-center">
+                    <h1>{fileId}</h1>
+                    <FileEditorInternal id={fileId.slice(1)} />
+                </section>
+            </div>
+        </div>
+    )
+}
+
+function FileEditorInternal({ id }: { id: string }) {
     const navigate = useNavigate()
     const [content, setContent] = useState("")
 
     const { data, isFetching } = useFileQuery(id, id !== undefined && id !== PARAM_NEW)
 
     const handleChange = useCallback(
-        debounce((newContent: string) => {
-            setContent(newContent)
-        }, 300),
+        debounce((newContent: string) => setContent(newContent), 300),
         [],
     )
 
@@ -72,24 +86,5 @@ function FileEditorController({ id }: { id: string }) {
                 )}
             </div>
         </>
-    )
-}
-
-export function FileEditorWrapper() {
-    const { fileId } = useParams()
-
-    if (!fileId) {
-        throw new Error("fileId is undefined")
-    }
-
-    return (
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-            <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min">
-                <section className="w-full py-32 md:py-48 flex flex-col items-center justify-center">
-                    <h1>{fileId}</h1>
-                    <FileEditorController id={fileId.slice(1)} />
-                </section>
-            </div>
-        </div>
     )
 }

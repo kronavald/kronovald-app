@@ -3,8 +3,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { Route, BrowserRouter, Routes } from "react-router"
 import { ErrorPage } from "./error-page/error-page.component"
 import { ThemeProvider } from "./components/theme-provider"
-import { HomePage } from "./home-page/home-page.component"
-import { FileEditorWrapper } from "./pages/home/FileEditor"
+import { ProjectEditingPage } from "./project-editing-page/project-editing-page.component"
+import { FileEditor } from "./project-editing-page/file-editor/file-editor.component"
 import "@/application.component.css"
 
 const queryClient = new QueryClient({})
@@ -15,8 +15,8 @@ export function Application() {
             <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/" element={<HomePage />} errorElement={<ErrorPage />}>
-                            <Route path=":fileId" element={<FileEditorWrapper />} />
+                        <Route path="/" element={<ProjectEditingPage />} errorElement={<ErrorPage />}>
+                            <Route path=":fileId" element={<FileEditor />} />
                         </Route>
                     </Routes>
                 </BrowserRouter>
