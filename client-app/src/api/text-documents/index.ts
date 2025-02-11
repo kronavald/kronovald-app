@@ -1,7 +1,4 @@
-export interface ITextDocument {
-    id: string
-    content: string
-}
+import { ITextDocument } from "@/project-editing-page/text-document/text-document.entity"
 
 // create text-document
 export const createFile = async (content: string): Promise<ITextDocument> =>

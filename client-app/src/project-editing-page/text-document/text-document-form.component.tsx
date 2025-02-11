@@ -13,7 +13,7 @@ import { Button } from "@/ui-kit/button.component"
 
 const PARAM_NEW = "new"
 
-export function FileEditor() {
+export function TextDocumentForm() {
     const { fileId } = useParams()
 
     if (!fileId) throw new Error("fileId is undefined")
@@ -23,14 +23,14 @@ export function FileEditor() {
             <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min">
                 <section className="w-full py-32 md:py-48 flex flex-col items-center justify-center">
                     <h1>{fileId}</h1>
-                    <FileEditorInternal id={fileId.slice(1)} />
+                    <TextDocumentFormInternal id={fileId.slice(1)} />
                 </section>
             </div>
         </div>
     )
 }
 
-function FileEditorInternal({ id }: { id: string }) {
+function TextDocumentFormInternal({ id }: { id: string }) {
     const navigate = useNavigate()
     const [content, setContent] = useState("")
 

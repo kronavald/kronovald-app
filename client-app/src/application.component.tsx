@@ -3,7 +3,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { Route, BrowserRouter, Routes } from "react-router"
 import { ErrorPage } from "./error-page/error-page.component"
 import { ProjectEditingPage } from "./project-editing-page/project-editing-page.component"
-import { FileEditor } from "./project-editing-page/file-editor/file-editor.component"
+import { TextDocumentForm } from "./project-editing-page/text-document/text-document-form.component"
 import "@/application.component.css"
 import { UIThemeProvider } from "./ui-theme-provider/ui-theme-provider.component"
 
@@ -16,7 +16,7 @@ export function Application() {
                 <BrowserRouter>
                     <Routes>
                         <Route path="/" element={<ProjectEditingPage />} errorElement={<ErrorPage />}>
-                            <Route path=":fileId" element={<FileEditor />} />
+                            <Route path=":fileId" element={<TextDocumentForm />} />
                         </Route>
                     </Routes>
                 </BrowserRouter>

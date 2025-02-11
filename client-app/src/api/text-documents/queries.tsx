@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { createFile, deleteFile, getAllFiles, getFileById, ITextDocument, updateFile } from "."
+import { createFile, deleteFile, getAllFiles, getFileById, updateFile } from "."
+import { ITextDocument } from "@/project-editing-page/text-document/text-document.entity"
 
 export const fileKeys = {
     all: ["files"] as const,
