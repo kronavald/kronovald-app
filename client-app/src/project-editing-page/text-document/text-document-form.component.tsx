@@ -1,15 +1,13 @@
 import { useCallback, useState } from "react"
 import { TextEditor } from "@/text-editor/text-editor.component"
 import { Loader2 } from "lucide-react"
-import {
-    useCreateFileMutation,
-    useDeleteFileMutation,
-    useFileQuery,
-    useUpdateFileMutation,
-} from "@/api/text-documents/queries"
 import { useNavigate, useParams } from "react-router"
 import { debounce } from "@/helpers/debounce.helper"
 import { Button } from "@/ui-kit/button.component"
+import { useCreateTextDocumentMutation } from "./mutations/use-create-text-document.mutation"
+import { useDeleteTextDocumentMutation } from "./mutations/use-delete-text-document.mutation"
+import { useUpdateTextDocumentMutation } from "./mutations/use-update-text-document.mutation"
+import { useTextDocumentQuery } from "./queries/use-text-document.query"
 
 const PARAM_NEW = "new"
 
@@ -34,16 +32,16 @@ function TextDocumentFormInternal({ id }: { id: string }) {
     const navigate = useNavigate()
     const [content, setContent] = useState("")
 
-    const { data, isFetching } = useFileQuery(id, id !== undefined && id !== PARAM_NEW)
+    const { data, isFetching } = useTextDocumentQuery(id, id !== undefined && id !== PARAM_NEW)
 
     const handleChange = useCallback(
         debounce((newContent: string) => setContent(newContent), 300),
         [],
     )
 
-    const createFile = useCreateFileMutation()
-    const updateFile = useUpdateFileMutation(id)
-    const deleteFile = useDeleteFileMutation(id)
+    const createFile = useCreateTextDocumentMutation()
+    const updateFile = useUpdateTextDocumentMutation(id)
+    const deleteFile = useDeleteTextDocumentMutation(id)
 
     return (
         <>

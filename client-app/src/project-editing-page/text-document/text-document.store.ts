@@ -1,4 +1,4 @@
-import { ITextDocument } from "@/project-editing-page/text-document/text-document.entity"
+import { ITextDocument } from "@/project-editing-page/text-document/entities/text-document.entity"
 
 export const TextDocumentStore = {
     async create(content: string): Promise<ITextDocument> {

@@ -1,5 +1,5 @@
 import { UIThemeSelector } from "@/ui-theme-selector/ui-theme-selector.component"
-import { ProjectFilesExplorer } from "@/project-editing-page/project-files-explorer/project-files-explorer.component"
+import { FilesExplorer } from "@/project-editing-page/files-explorer/files-explorer.component"
 import {
     Breadcrumb,
     BreadcrumbList,
@@ -32,7 +32,7 @@ export function ProjectEditingPage() {
         <SidebarProvider>
             <Sidebar collapsible="icon" {...props}>
                 <SidebarContent>
-                    <ProjectFilesExplorer />
+                    <FilesExplorer />
                 </SidebarContent>
                 <SidebarFooter>
                     <div className="flex justify-between gap-4">

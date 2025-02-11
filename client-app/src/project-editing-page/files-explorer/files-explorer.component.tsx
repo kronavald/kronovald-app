@@ -1,5 +1,5 @@
 import { ChevronRight, SquareTerminal } from "lucide-react"
-import { useFilesListQuery } from "@/api/text-documents/queries"
+import { useAllFilesListQuery } from "@/project-editing-page/text-document/queries/use-text-documents-list.query"
 import {
     SidebarGroup,
     SidebarGroupLabel,
@@ -14,8 +14,8 @@ import {
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@radix-ui/react-collapsible"
 import { NavLink } from "react-router"
 
-export function ProjectFilesExplorer() {
-    const { data: files, isLoading } = useFilesListQuery()
+export function FilesExplorer() {
+    const { data: files, isLoading } = useAllFilesListQuery()
 
     const placeholderForNewFile = { title: "New", url: ":new" }
 
