@@ -1,4 +1,4 @@
-import { ModeToggle } from "@/components/mode-toggle"
+import { UIThemeSelector } from "@/ui-theme-selector/ui-theme-selector.component"
 import { ProjectFilesExplorer } from "@/project-editing-page/project-files-explorer/project-files-explorer.component"
 import {
     Breadcrumb,
@@ -41,7 +41,7 @@ export function ProjectEditingPage() {
                                 <Github />
                             </a>
                         </Button>
-                        <ModeToggle />
+                        <UIThemeSelector />
                     </div>
                 </SidebarFooter>
                 <SidebarRail />
