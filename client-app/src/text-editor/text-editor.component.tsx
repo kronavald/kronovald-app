@@ -1,3 +1,4 @@
+import { convertBase64ToBlob } from "@/helpers/convert-base64-to-blob.helper"
 import { memo, useEffect } from "react"
 import RichTextEditor, {
     BaseKit,
@@ -45,7 +46,6 @@ import RichTextEditor, {
     UseEditorOptions,
     useEditorState,
 } from "reactjs-tiptap-editor"
-import { convertBase64ToBlob } from "@/lib/utils"
 import "reactjs-tiptap-editor/style.css"
 
 const extensions = [

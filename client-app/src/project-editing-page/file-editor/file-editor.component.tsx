@@ -8,8 +8,8 @@ import {
     useFileQuery,
     useUpdateFileMutation,
 } from "@/api/text-documents/queries"
-import { debounce } from "@/lib/utils"
 import { useNavigate, useParams } from "react-router"
+import { debounce } from "@/helpers/debounce.helper"
 
 const PARAM_NEW = "new"
 
