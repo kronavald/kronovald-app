@@ -1,4 +1,5 @@
-import { AppSidebar } from "@/components/app-sidebar"
+import { ModeToggle } from "@/components/mode-toggle"
+import { ProjectFilesExplorer } from "@/project-editing-page/project-files-explorer/project-files-explorer.component"
 import {
     Breadcrumb,
     BreadcrumbList,
@@ -7,16 +8,44 @@ import {
     BreadcrumbSeparator,
     BreadcrumbPage,
 } from "@/ui-kit/breadcrumb.component"
-import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/ui-kit/sidebar.component"
+import { Button } from "@/ui-kit/button.component"
+import {
+    SidebarProvider,
+    SidebarInset,
+    SidebarTrigger,
+    Sidebar,
+    SidebarContent,
+    SidebarFooter,
+    SidebarRail,
+} from "@/ui-kit/sidebar.component"
 import { Separator } from "@radix-ui/react-separator"
+import { Github } from "lucide-react"
+import { ComponentProps } from "react"
 import { Outlet, useParams } from "react-router"
 
 export function ProjectEditingPage() {
     const { fileId } = useParams()
 
+    const props: ComponentProps<typeof Sidebar> = {}
+
     return (
         <SidebarProvider>
-            <AppSidebar />
+            <Sidebar collapsible="icon" {...props}>
+                <SidebarContent>
+                    <ProjectFilesExplorer />
+                </SidebarContent>
+                <SidebarFooter>
+                    <div className="flex justify-between gap-4">
+                        <Button size={"icon"} className="rounded-full">
+                            <a href="https://github.com/kronavald/kronovald" target="_blank" rel="noreferrer">
+                                <Github />
+                            </a>
+                        </Button>
+                        <ModeToggle />
+                    </div>
+                </SidebarFooter>
+                <SidebarRail />
+            </Sidebar>
             <SidebarInset>
                 <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
                     <div className="flex items-center gap-2 px-4">
