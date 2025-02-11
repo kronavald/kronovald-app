@@ -1,5 +1,4 @@
 import { useCallback, useState } from "react"
-import { Button } from "@/components/ui/button"
 import { TextEditor } from "@/text-editor/text-editor.component"
 import { Loader2 } from "lucide-react"
 import {
@@ -10,6 +9,7 @@ import {
 } from "@/api/text-documents/queries"
 import { useNavigate, useParams } from "react-router"
 import { debounce } from "@/helpers/debounce.helper"
+import { Button } from "@/ui-kit/button.component"
 
 const PARAM_NEW = "new"
 

@@ -1,16 +1,15 @@
-import { ChevronRight, type LucideIcon } from "lucide-react"
-
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import {
     SidebarGroup,
     SidebarGroupLabel,
     SidebarMenu,
-    SidebarMenuButton,
     SidebarMenuItem,
+    SidebarMenuButton,
     SidebarMenuSub,
-    SidebarMenuSubButton,
     SidebarMenuSubItem,
-} from "@/components/ui/sidebar"
+    SidebarMenuSubButton,
+} from "@/ui-kit/sidebar.component"
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@radix-ui/react-collapsible"
+import { ChevronRight, type LucideIcon } from "lucide-react"
 import { NavLink } from "react-router"
 
 export function NavMain({

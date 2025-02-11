@@ -1,14 +1,14 @@
 import { AppSidebar } from "@/components/app-sidebar"
 import {
     Breadcrumb,
+    BreadcrumbList,
     BreadcrumbItem,
     BreadcrumbLink,
-    BreadcrumbList,
-    BreadcrumbPage,
     BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+    BreadcrumbPage,
+} from "@/ui-kit/breadcrumb.component"
+import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/ui-kit/sidebar.component"
+import { Separator } from "@radix-ui/react-separator"
 import { Outlet, useParams } from "react-router"
 
 export function ProjectEditingPage() {

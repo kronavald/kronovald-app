@@ -1,6 +1,6 @@
+import { Button } from "@/ui-kit/button.component"
 import { useTranslation } from "react-i18next"
 import { Link, useRouteError } from "react-router"
-import { Button } from "../components/ui/button"
 
 export function ErrorPage() {
     const error = useRouteError() as any

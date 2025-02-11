@@ -1,7 +1,10 @@
-import * as React from "react"
 import { Github, SquareTerminal } from "lucide-react"
-
 import { NavMain } from "@/components/nav-main"
+import { useTranslation } from "react-i18next"
+import { Link } from "react-router"
+import { Separator } from "@radix-ui/react-separator"
+import { ModeToggle } from "./mode-toggle"
+import { useFilesListQuery } from "@/api/text-documents/queries"
 import {
     Sidebar,
     SidebarContent,
@@ -10,15 +13,11 @@ import {
     SidebarMenuSkeleton,
     SidebarRail,
     useSidebar,
-} from "@/components/ui/sidebar"
-import { Button } from "./ui/button"
-import { useTranslation } from "react-i18next"
-import { Link } from "react-router"
-import { Separator } from "@radix-ui/react-separator"
-import { ModeToggle } from "./mode-toggle"
-import { useFilesListQuery } from "@/api/text-documents/queries"
+} from "@/ui-kit/sidebar.component"
+import { Button } from "@/ui-kit/button.component"
+import { ComponentProps } from "react"
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
     const { t } = useTranslation()
     const { open } = useSidebar()
 

@@ -1,7 +1,7 @@
-import { Button } from "../ui/button"
 import { useTranslation } from "react-i18next"
 import { Github } from "lucide-react"
 import { Link, useLocation } from "react-router"
+import { Button } from "@/ui-kit/button.component"
 
 export function Header() {
     const { t } = useTranslation()
