@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { createFile, deleteFile, getAllFiles, getFileById, updateFile } from "."
 import { ITextDocument } from "@/project-editing-page/text-document/text-document.entity"
+import { TextDocumentStore } from "../../project-editing-page/text-document/text-document.store"
 
 export const fileKeys = {
     all: ["files"] as const,
@@ -18,7 +18,7 @@ export const fileKeys = {
 export const useFilesListQuery = () => {
     return useQuery({
         queryKey: [fileKeys.lists()],
-        queryFn: getAllFiles,
+        queryFn: TextDocumentStore.all,
     })
 }
 
@@ -27,7 +27,7 @@ export const useFileQuery = (id: string, enabled?: boolean) => {
 
     return useQuery({
         queryKey: [fileKeys.detail(id)],
-        queryFn: () => getFileById(id),
+        queryFn: () => TextDocumentStore.one(id),
         initialData: () => {
             const filesList = queryClient.getQueryData<ITextDocument[]>([fileKeys.lists()])
 
@@ -52,7 +52,7 @@ export const useCreateFileMutation = () => {
 
     return useMutation({
         mutationKey: [fileKeys.detail("new")],
-        mutationFn: createFile,
+        mutationFn: TextDocumentStore.create,
         // onMutate: async (newContent) => {
         //     await queryClient.cancelQueries({ queryKey: [fileKeys.lists()] })
         //     const previousFiles = queryClient.getQueryData<ITextDocument[]>([fileKeys.lists()])
@@ -85,7 +85,7 @@ export const useUpdateFileMutation = (id: string) => {
 
     return useMutation({
         mutationKey: [fileKeys.detail(id)],
-        mutationFn: (data: ITextDocument) => updateFile(data.id, data.content),
+        mutationFn: (data: ITextDocument) => TextDocumentStore.update(data.id, data),
         onMutate: async (updatedContent) => {
             const id = updatedContent.id
             await queryClient.cancelQueries({ queryKey: [fileKeys.lists()] })
@@ -129,7 +129,7 @@ export const useDeleteFileMutation = (id: string) => {
 
     return useMutation({
         mutationKey: [fileKeys.detail(id)],
-        mutationFn: () => deleteFile(id),
+        mutationFn: () => TextDocumentStore.delete(id),
         onMutate: async () => {
             await queryClient.cancelQueries({ queryKey: [fileKeys.lists()] })
             await queryClient.cancelQueries({ queryKey: [fileKeys.detail(id)] })
