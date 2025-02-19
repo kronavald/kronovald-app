@@ -2,7 +2,7 @@ import { useCallback, useState } from "react"
 import { TextEditor } from "@/features/documents/components/text-editor"
 import { Loader2 } from "lucide-react"
 import { useNavigate, useParams } from "react-router"
-import { debounce } from "@/shared/helpers"
+import { debounce } from "@/shared/utils"
 import { Button } from "@/shared/ui/button"
 import {
     useTextDocumentCreateMutation,

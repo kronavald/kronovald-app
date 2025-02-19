@@ -1,6 +1,7 @@
-import { convertBase64ToBlob } from "@/shared/helpers"
+import { convertBase64ToBlob } from "@/shared/utils"
 import { memo, useEffect } from "react"
-import RichTextEditor, {
+import RichTextEditor, { UseEditorOptions, useEditorState } from "reactjs-tiptap-editor"
+import {
     BaseKit,
     Blockquote,
     Bold,
@@ -43,9 +44,8 @@ import RichTextEditor, {
     Mention,
     Attachment,
     Mermaid,
-    UseEditorOptions,
-    useEditorState,
-} from "reactjs-tiptap-editor"
+} from "reactjs-tiptap-editor/extension-bundle"
+
 import "reactjs-tiptap-editor/style.css"
 
 const extensions = [
