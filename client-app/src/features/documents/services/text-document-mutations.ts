@@ -1,7 +1,8 @@
-import { useQueryClient, useMutation } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+
+import { TextDocument } from "../model/text-document-model"
 import { TextDocumentQueryKeys } from "./text-document-query-keys"
 import { TextDocumentApi } from "./text-documents-api"
-import { TextDocument } from "../model/text-document-model"
 
 export function useTextDocumentCreateMutation() {
     const queryClient = useQueryClient()
@@ -52,10 +53,7 @@ export function useTextDocumentUpdateMutation(id: string) {
                 queryClient.setQueryData([TextDocumentQueryKeys.lists()], context.previousFilesList)
             }
             if (context?.previousFile) {
-                queryClient.setQueryData(
-                    [TextDocumentQueryKeys.detail(context.previousFile.id)],
-                    context.previousFile
-                )
+                queryClient.setQueryData([TextDocumentQueryKeys.detail(context.previousFile.id)], context.previousFile)
             }
         },
         onSettled: (_, __, variables) => {

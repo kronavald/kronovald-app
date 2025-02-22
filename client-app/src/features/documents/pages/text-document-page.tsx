@@ -1,29 +1,31 @@
+import { ComponentProps, ReactNode } from "react"
+
+import { Outlet, useParams } from "react-router"
+
 import { UIThemeSelector } from "@/shared/theme/ui-theme-selector"
-import { FilesExplorer } from "@/features/documents/components/files-explorer"
+
 import {
     Breadcrumb,
-    BreadcrumbList,
     BreadcrumbItem,
     BreadcrumbLink,
-    BreadcrumbSeparator,
+    BreadcrumbList,
     BreadcrumbPage,
+    BreadcrumbSeparator,
 } from "@/shared/ui/breadcrumb"
-import { Button } from "@/shared/ui/button"
+import KronovaldGithubButton from "@/shared/ui/kronovald-github-link-button"
 import {
-    SidebarProvider,
-    SidebarInset,
-    SidebarTrigger,
     Sidebar,
     SidebarContent,
     SidebarFooter,
+    SidebarInset,
+    SidebarProvider,
     SidebarRail,
+    SidebarTrigger,
 } from "@/shared/ui/sidebar"
-import { Separator } from "@radix-ui/react-separator"
-import { SiGithub } from '@icons-pack/react-simple-icons'
-import { ComponentProps } from "react"
-import { Outlet, useParams } from "react-router"
 
-export function TextDocumentPage() {
+import { Separator } from "@radix-ui/react-separator"
+
+export function TextDocumentPage({ contentElement }: { contentElement: ReactNode }) {
     const { fileId } = useParams()
 
     const props: ComponentProps<typeof Sidebar> = {}
@@ -31,16 +33,10 @@ export function TextDocumentPage() {
     return (
         <SidebarProvider>
             <Sidebar collapsible="icon" {...props}>
-                <SidebarContent>
-                    <FilesExplorer />
-                </SidebarContent>
+                <SidebarContent>{contentElement}</SidebarContent>
                 <SidebarFooter>
                     <div className="flex justify-between gap-4">
-                        <Button size={"icon"} className="rounded-full">
-                            <a href="https://github.com/kronavald/kronovald" target="_blank" rel="noreferrer">
-                                <SiGithub />
-                            </a>
-                        </Button>
+                        <KronovaldGithubButton />
                         <UIThemeSelector />
                     </div>
                 </SidebarFooter>
@@ -58,7 +54,7 @@ export function TextDocumentPage() {
                                 </BreadcrumbItem>
                                 <BreadcrumbSeparator className="hidden md:block" />
                                 <BreadcrumbItem>
-                                    <BreadcrumbPage>{fileId?.slice(1)}</BreadcrumbPage>
+                                    <BreadcrumbPage>{fileId}</BreadcrumbPage>
                                 </BreadcrumbItem>
                             </BreadcrumbList>
                         </Breadcrumb>

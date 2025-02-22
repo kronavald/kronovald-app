@@ -24,7 +24,6 @@ export function debounce(func: any, wait: number) {
     return function (...args: any[]) {
         clearTimeout(timeout)
         // @ts-expect-error
-        timeout = setTimeout(() => func.apply(this, args), wait)
+        timeout = window.setTimeout(() => func.apply(this, args), wait)
     }
 }
-

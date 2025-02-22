@@ -1,6 +1,7 @@
-import { useQueryClient, useQuery } from "@tanstack/react-query"
-import { TextDocumentQueryKeys } from "./text-document-query-keys"
+import { useQuery, useQueryClient } from "@tanstack/react-query"
+
 import { TextDocument } from "../model/text-document-model"
+import { TextDocumentQueryKeys } from "./text-document-query-keys"
 import { TextDocumentApi } from "./text-documents-api"
 
 export function useTextDocumentQuery(id: string, enabled?: boolean) {
@@ -34,4 +35,3 @@ export function useTextDocumentListQuery() {
         queryFn: TextDocumentApi.get,
     })
 }
-

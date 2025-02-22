@@ -15,7 +15,7 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[markdown]": {
-        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
     },
     "[typescriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -24,6 +24,5 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "files.eol": "\n",
-    "javascript.format.semicolons": "remove",
-    "typescript.format.semicolons": "remove"
+    "javascript.format.semicolons": "remove"
 }

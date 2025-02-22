@@ -1,7 +1,9 @@
-import { convertBase64ToBlob } from "@/shared/utils"
 import { memo, useEffect } from "react"
+
+import { convertBase64ToBlob } from "@/shared/utils"
 import RichTextEditor, { UseEditorOptions, useEditorState } from "reactjs-tiptap-editor"
 import {
+    Attachment,
     BaseKit,
     Blockquote,
     Bold,
@@ -12,6 +14,7 @@ import {
     Color,
     ColumnActionButton,
     Emoji,
+    Excalidraw,
     ExportPdf,
     ExportWord,
     FontFamily,
@@ -28,24 +31,21 @@ import {
     Katex,
     LineHeight,
     Link,
+    Mention,
+    Mermaid,
     MoreMark,
     OrderedList,
     SearchAndReplace,
     SlashCommand,
     Strike,
     Table,
+    TableOfContents,
     TaskList,
     TextAlign,
+    TextDirection,
     Underline,
     Video,
-    TableOfContents,
-    Excalidraw,
-    TextDirection,
-    Mention,
-    Attachment,
-    Mermaid,
 } from "reactjs-tiptap-editor/extension-bundle"
-
 import "reactjs-tiptap-editor/style.css"
 
 const extensions = [
