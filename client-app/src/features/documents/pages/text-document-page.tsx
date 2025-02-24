@@ -19,9 +19,9 @@ import {
     SidebarRail,
 } from "@/shared/ui/sidebar"
 import { Separator } from "@radix-ui/react-separator"
-import { SiGithub } from '@icons-pack/react-simple-icons'
 import { ComponentProps } from "react"
 import { Outlet, useParams } from "react-router"
+import { GithubIcon } from "@/shared/icons/github-icon"
 
 export function TextDocumentPage() {
     const { fileId } = useParams()
@@ -38,7 +38,7 @@ export function TextDocumentPage() {
                     <div className="flex justify-between gap-4">
                         <Button size={"icon"} className="rounded-full">
                             <a href="https://github.com/kronavald/kronovald" target="_blank" rel="noreferrer">
-                                <SiGithub />
+                                <GithubIcon />
                             </a>
                         </Button>
                         <UIThemeSelector />

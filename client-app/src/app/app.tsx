@@ -1,13 +1,13 @@
+import "./i18n"
+import "./app.css"
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { UIThemeProvider } from "@/shared/theme/ui-theme-provider"
-import { BrowserRouter, Route, Routes } from "react-router"
-import { TextDocumentPage } from "@/features/documents/pages/text-document-page"
-import { ErrorPage } from "@/features/errors/error-page"
-import { TextDocumentForm } from "@/features/documents/components/text-document-form"
+import { BrowserRouter, Navigate, Route, Routes } from "react-router"
 
-import "./i18n"
-import "./app.css"
+import { AppLayout } from "@/app/components/app-layout"
+import { TextDocumentPage } from "@/features/documents/pages/text-document-page"
 
 const queryClient = new QueryClient({})
 
@@ -17,8 +17,9 @@ export function App() {
             <UIThemeProvider>
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/" element={<TextDocumentPage />} errorElement={<ErrorPage />}>
-                            <Route path=":fileId" element={<TextDocumentForm />} />
+                        <Route element={<AppLayout />}>
+                            <Route index element={<Navigate to="/documents" replace />} />
+                            <Route path="/documents" element={<TextDocumentPage />} />
                         </Route>
                     </Routes>
                 </BrowserRouter>
