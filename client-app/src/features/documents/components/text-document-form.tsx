@@ -24,7 +24,7 @@ export function TextDocumentForm() {
             <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min">
                 <section className="w-full py-32 md:py-48 flex flex-col items-center justify-center">
                     <h1>{fileId}</h1>
-                    <TextDocumentFormInternal id={fileId.slice(1)} />
+                    <TextDocumentFormInternal id={fileId} />
                 </section>
             </div>
         </div>

@@ -1,3 +1,4 @@
+import { LanguageSelector } from "@/shared/i18n/language-selector"
 import { UIThemeSelector } from "@/shared/theme/ui-theme-selector"
 import {
     NavigationMenu,
@@ -10,7 +11,6 @@ import {
 import { MobileMenu, MobileMenuItem, MobileMenuLink, MobileMenuSeparator } from "@/shared/ui/mobile-nav"
 import { Avatar, AvatarFallback, AvatarImage } from "@/shared/ui/avatar"
 import { User } from "lucide-react"
-
 import { Link } from "react-router"
 import { buttonVariants } from "@/shared/ui/button"
 
@@ -34,17 +34,20 @@ export function AppHeader() {
                     <MobileMenuLink to="/documents">Documents</MobileMenuLink>
                 </MobileMenu>
                 <div className="flex flex-1 items-center gap-2 justify-end">
+                    <LanguageSelector />
                     <UIThemeSelector />
                     <MobileMenu
                         title="User anonimous"
                         side="right"
                         className="mr-4 md:hidden"
                         trigger={
-                            <Avatar className={buttonVariants({
-                                variant: "ghost",
-                                size: "avatar",
-                                className: "[&_svg]:size-6 -my-2 cursor-pointer",
-                            })}>
+                            <Avatar
+                                className={buttonVariants({
+                                    variant: "ghost",
+                                    size: "avatar",
+                                    className: "[&_svg]:size-6 -my-2 cursor-pointer",
+                                })}
+                            >
                                 <AvatarImage src="" alt="" />
                                 <AvatarFallback>
                                     <User />
