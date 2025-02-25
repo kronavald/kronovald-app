@@ -14,7 +14,7 @@ export function LanguageSelector() {
                     {i18n.language}
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            <DropdownMenuContent align="start">
                 {LANGUAGES.map((l) => (
                     <DropdownMenuItem key={l.code} onClick={() => i18n.changeLanguage(l.code)}>
                         {l.name}
