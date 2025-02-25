@@ -16,7 +16,7 @@ import { buttonVariants } from "@/shared/ui/button"
 
 export function AppHeader() {
     return (
-        <header className="sticky top-0 z-50 border-b border-grid">
+        <header className="sticky top-0 z-50 border-b border-grid bg-background">
             <div className="px-3 sm:px-4 md:px-6 py-2 flex items-center">
                 <div className="-ml-4 mr-4 hidden md:flex">
                     <NavigationMenu>
