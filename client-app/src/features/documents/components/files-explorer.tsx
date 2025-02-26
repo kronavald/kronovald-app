@@ -23,10 +23,9 @@ export function FilesExplorer() {
 
     const placeholderForNewFile = { title: "New", url: "new" }
 
-    const navFilesItems =
-        files ?
-            [...files.map((file) => ({ title: file.id, url: `/${file.id}` })), placeholderForNewFile]
-        :   [placeholderForNewFile]
+    const navFilesItems = files
+        ? [...files.map((file) => ({ title: file.id, url: `/documents/${file.id}` })), placeholderForNewFile]
+        : [placeholderForNewFile]
 
     const navFilesData = [{ title: "Files", url: "#", icon: SquareTerminal, isActive: true, items: navFilesItems }]
 

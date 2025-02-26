@@ -1,17 +1,13 @@
-import { BrowserRouter, Route, Routes } from "react-router"
+import "@/shared/i18n/i18n"
+import "./app.css"
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
-
-import { FilesExplorer } from "@/features/documents/components/files-explorer"
-import { TextDocumentForm } from "@/features/documents/components/text-document-form"
-import { TextDocumentPage } from "@/features/documents/pages/text-document-page"
-import { ErrorPage } from "@/features/errors/error-page"
-
 import { UIThemeProvider } from "@/shared/theme/ui-theme-provider"
+import { BrowserRouter, Navigate, Route, Routes } from "react-router"
 
-import "./app.css"
-import "./i18n"
+import { AppLayout } from "@/app/components/app-layout"
+import { TextDocumentModule } from "@/features/documents"
 
 const queryClient = new QueryClient({})
 
@@ -21,12 +17,9 @@ export function App() {
             <UIThemeProvider>
                 <BrowserRouter>
                     <Routes>
-                        <Route
-                            path="/"
-                            element={<TextDocumentPage contentElement={<FilesExplorer />} />}
-                            errorElement={<ErrorPage />}
-                        >
-                            <Route path=":fileId" element={<TextDocumentForm />} />
+                        <Route element={<AppLayout />}>
+                            <Route index element={<Navigate to="/documents" replace />} />
+                            <Route path="/documents/*" element={<TextDocumentModule />} />
                         </Route>
                     </Routes>
                 </BrowserRouter>

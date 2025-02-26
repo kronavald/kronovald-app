@@ -1,15 +1,12 @@
-import {
-    CSSProperties,
-    ComponentProps,
-    ElementRef,
-    createContext,
-    forwardRef,
-    useCallback,
-    useContext,
-    useMemo,
-    useState,
-} from "react"
+"use client"
 
+import * as React from "react"
+import { Slot } from "@radix-ui/react-slot"
+import { VariantProps, cva } from "class-variance-authority"
+import { PanelLeft } from "lucide-react"
+
+import { useIsMobile } from "@/shared/hooks/use-mobile"
+import { cn } from "@/shared/utils"
 import { Button } from "@/shared/ui/button"
 import { Input } from "@/shared/ui/input"
 import { Separator } from "@/shared/ui/separator"
@@ -375,7 +372,7 @@ const SidebarGroupLabel = forwardRef<HTMLDivElement, ComponentProps<"div"> & { a
                 ref={ref}
                 data-sidebar="group-label"
                 className={cn(
-                    "flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium text-sidebar-foreground/70 outline-none ring-sidebar-ring transition-[margin,opa] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
+                    "flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium text-sidebar-foreground/70 outline-none ring-sidebar-ring transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
                     "group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0",
                     className,
                 )}
