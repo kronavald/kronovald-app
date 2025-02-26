@@ -7,7 +7,7 @@ import { Separator } from "./separator"
 
 export interface MobileMenuProps {
     side?: "left" | "right"
-    title?: string
+    title?: React.ReactNode
     trigger?: React.ReactNode
     children: React.ReactNode
     className?: string

@@ -13,12 +13,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/shared/ui/avatar"
 import { User } from "lucide-react"
 import { Link } from "react-router"
 import { buttonVariants } from "@/shared/ui/button"
+import { Logo, LogoSmall } from "./logo"
 
 export function AppHeader() {
     return (
         <header className="sticky top-0 z-50 border-b border-grid bg-background">
             <div className="px-3 sm:px-4 md:px-6 py-2 flex items-center">
-                <div className="-ml-4 mr-4 hidden md:flex">
+                <div className="hidden md:flex items-center">
+                    <LogoSmall className="w-5 h-5" />
                     <NavigationMenu>
                         <NavigationMenuList>
                             <NavigationMenuItem>
@@ -30,7 +32,7 @@ export function AppHeader() {
                         </NavigationMenuList>
                     </NavigationMenu>
                 </div>
-                <MobileMenu title="Kronovald" side="left" className="mr-4 md:hidden">
+                <MobileMenu title={<Logo className="w-32 h-5" />} side="left" className="mr-4 md:hidden">
                     <MobileMenuLink to="/documents">Documents</MobileMenuLink>
                 </MobileMenu>
                 <div className="flex flex-1 items-center gap-2 justify-end">
