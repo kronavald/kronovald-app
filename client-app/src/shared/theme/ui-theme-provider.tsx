@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { UITheme } from "./ui-theme.types"
-import { UIThemeProviderContext, UI_THEME_INITIAL_STATE } from "./ui-theme-context"
+import { UIThemeProviderContext } from "./ui-theme-context"
 
 type UIThemeProviderProps = {
     children: React.ReactNode
@@ -10,31 +10,44 @@ type UIThemeProviderProps = {
 
 const STORAGE_KEY = "ui-theme"
 
+const getInitialTheme = () => {
+    try {
+        const storedTheme = localStorage.getItem(STORAGE_KEY) as UITheme
+        if (storedTheme) return storedTheme
+    } catch (e) {
+        console.error("Error accessing localStorage", e)
+    }
+
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+}
+
 export function UIThemeProvider({ children, ...props }: UIThemeProviderProps) {
-    const [uiTheme, setUITheme] = useState<UITheme>(
-        () => (localStorage.getItem(STORAGE_KEY) as UITheme) || UI_THEME_INITIAL_STATE.uiTheme,
-    )
+    const [uiTheme, setUIThemeState] = useState<UITheme>(getInitialTheme)
 
     useEffect(() => {
         const root = window.document.documentElement
 
-        root.classList.remove("light", "dark")
-
-        if (uiTheme === "system") {
-            const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
-
-            root.classList.add(systemTheme)
-            return
+        if (!root.classList.contains(uiTheme)) {
+            root.classList.remove("light", "dark")
+            root.classList.add(uiTheme)
         }
-
-        root.classList.add(uiTheme)
     }, [uiTheme])
+
+    const setUITheme = (theme: UITheme) => {
+        setUIThemeState(theme)
+        try {
+            localStorage.setItem(STORAGE_KEY, theme)
+        } catch (e) {
+            console.error("Error saving to localStorage", e)
+        }
+    }
 
     const value = {
         uiTheme,
-        setUITheme: (theme: UITheme) => {
-            localStorage.setItem(STORAGE_KEY, theme)
-            setUITheme(theme)
+        setUITheme,
+        switchUITheme: () => {
+            const newTheme = uiTheme === "dark" ? "light" : "dark"
+            setUITheme(newTheme)
         },
     }
 
