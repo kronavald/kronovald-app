@@ -1,5 +1,10 @@
-import { LanguageSelector } from "@/shared/i18n/language-selector"
+import { Link } from "react-router"
+
 import { UIThemeSelector } from "@/shared/theme/ui-theme-selector"
+
+import { Avatar, AvatarFallback, AvatarImage } from "@/shared/ui/avatar"
+import { buttonVariants } from "@/shared/ui/button"
+import { MobileMenu, MobileMenuItem, MobileMenuLink, MobileMenuSeparator } from "@/shared/ui/mobile-nav"
 import {
     NavigationMenu,
     NavigationMenuIndicator,
@@ -8,19 +13,19 @@ import {
     NavigationMenuList,
     navigationMenuTriggerStyle,
 } from "@/shared/ui/navigation-menu"
-import { MobileMenu, MobileMenuItem, MobileMenuLink, MobileMenuSeparator } from "@/shared/ui/mobile-nav"
-import { Avatar, AvatarFallback, AvatarImage } from "@/shared/ui/avatar"
+
 import { User } from "lucide-react"
-import { Link } from "react-router"
-import { buttonVariants } from "@/shared/ui/button"
+
 import { Logo, LogoSmall } from "./logo"
+
+import { LanguageSelector } from "@/shared/i18n/language-selector"
 
 export function AppHeader() {
     return (
-        <header className="sticky top-0 z-50 border-b border-grid bg-background">
-            <div className="px-3 sm:px-4 md:px-6 py-2 flex items-center">
-                <div className="hidden md:flex items-center">
-                    <LogoSmall className="w-5 h-5" />
+        <header className="sticky top-0 z-50 border-b bg-background">
+            <div className="flex items-center px-3 py-2 sm:px-4 md:px-6">
+                <div className="hidden items-center md:flex">
+                    <LogoSmall className="size-5" />
                     <NavigationMenu>
                         <NavigationMenuList>
                             <NavigationMenuItem>
@@ -32,10 +37,10 @@ export function AppHeader() {
                         </NavigationMenuList>
                     </NavigationMenu>
                 </div>
-                <MobileMenu title={<Logo className="w-32 h-5" />} side="left" className="mr-4 md:hidden">
+                <MobileMenu title={<Logo className="h-5 w-32" />} side="left" className="mr-4 md:hidden">
                     <MobileMenuLink to="/documents">Documents</MobileMenuLink>
                 </MobileMenu>
-                <div className="flex flex-1 items-center gap-2 justify-end">
+                <div className="flex flex-1 items-center justify-end gap-2">
                     <LanguageSelector />
                     <UIThemeSelector />
                     <MobileMenu

@@ -18,28 +18,14 @@ export default defineConfig({
                 secure: false,
                 ws: true,
                 configure: (proxy) => {
-                    proxy.on("error", (err, _req, _res) => {
+                    proxy.on("error", (err) => {
                         console.log("proxy error", err)
-                        console.table({
-                            err,
-                            request: _req,
-                            response: _res,
-                        })
                     })
-                    proxy.on("proxyReq", (_, req, _res) => {
+                    proxy.on("proxyReq", (_, req) => {
                         console.log("Sending Request to the Target:", req.method, req.url)
-                        console.table({
-                            request: req,
-                            response: _res,
-                        })
                     })
-                    proxy.on("proxyRes", (proxyRes, req, _res) => {
+                    proxy.on("proxyRes", (proxyRes, req) => {
                         console.log("Received Response from the Target:", proxyRes.statusCode, req.url)
-                        console.table({
-                            proxyRes,
-                            request: req,
-                            response: _res,
-                        })
                     })
                 },
             },

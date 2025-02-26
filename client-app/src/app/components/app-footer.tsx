@@ -1,10 +1,11 @@
-import { GithubIcon } from "@/shared/icons/github-icon"
 import { buttonVariants } from "@/shared/ui/button"
+
+import { GithubIcon } from "@/shared/icons/github-icon"
 
 export function AppFooter() {
     return (
-        <footer className="z-50 border-t border-grid bg-background">
-            <div className="px-3 sm:px-4 md:px-6 py-2 md:flex md:items-center md:justify-between">
+        <footer className="z-50 border-t bg-background">
+            <div className="px-3 py-2 sm:px-4 md:flex md:items-center md:justify-between md:px-6">
                 <div className="flex justify-center gap-x-6 md:order-2">
                     <a
                         href="https://github.com/kronovald/kronovald"

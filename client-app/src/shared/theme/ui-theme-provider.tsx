@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import { UITheme } from "./ui-theme.types"
+
 import { UIThemeProviderContext } from "./ui-theme-context"
+import { UITheme } from "./ui-theme.types"
 
 type UIThemeProviderProps = {
     children: React.ReactNode

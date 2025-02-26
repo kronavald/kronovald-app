@@ -12,7 +12,7 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/shared/ui/breadcrumb"
-import KronovaldGithubButton from "@/shared/ui/kronovald-github-link-button"
+import KronovaldGithubLinkButton from "@/shared/ui/kronovald-github-link-button"
 import {
     Sidebar,
     SidebarContent,
@@ -24,9 +24,6 @@ import {
 } from "@/shared/ui/sidebar"
 
 import { Separator } from "@radix-ui/react-separator"
-import { ComponentProps } from "react"
-import { Outlet, useParams } from "react-router"
-import { GithubIcon } from "@/shared/icons/github-icon"
 
 export function TextDocumentPage({ contentElement }: { contentElement: ReactNode }) {
     const { fileId } = useParams()
@@ -39,11 +36,7 @@ export function TextDocumentPage({ contentElement }: { contentElement: ReactNode
                 <SidebarContent>{contentElement}</SidebarContent>
                 <SidebarFooter>
                     <div className="flex justify-between gap-4">
-                        <Button size={"icon"} className="rounded-full">
-                            <a href="https://github.com/kronavald/kronovald" target="_blank" rel="noreferrer">
-                                <GithubIcon />
-                            </a>
-                        </Button>
+                        <KronovaldGithubLinkButton />
                         <UIThemeSelector />
                     </div>
                 </SidebarFooter>

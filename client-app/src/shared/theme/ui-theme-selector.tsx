@@ -1,5 +1,7 @@
-import { Moon, Sun } from "lucide-react"
 import { Button, ButtonProps } from "@/shared/ui/button"
+
+import { Moon, Sun } from "lucide-react"
+
 import { useUITheme } from "./use-ui-theme"
 
 export interface UIThemeSelectorProps extends ButtonProps {}
@@ -9,7 +11,9 @@ export function UIThemeSelector({ variant = "ghost", size = "icon", ...rest }: U
 
     return (
         <Button variant={variant} size={size} onClick={switchUITheme} {...rest}>
-            {uiTheme === "light" ? <Sun /> : <Moon />}
+            {uiTheme === "light" ?
+                <Sun />
+            :   <Moon />}
         </Button>
     )
 }

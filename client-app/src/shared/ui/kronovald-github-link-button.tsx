@@ -1,12 +1,12 @@
 import { Button } from "@/shared/ui/button"
 
 import { KRONOVALD_GITHUB_URL } from "@/shared/const"
-import { SiGithub } from "@icons-pack/react-simple-icons"
+import { GithubIcon } from "@/shared/icons/github-icon"
 
 const KronovaldGithubLinkButton = () => (
     <Button size="icon" className="rounded-full">
         <a href={KRONOVALD_GITHUB_URL} target="_blank" rel="noreferrer">
-            <SiGithub />
+        <GithubIcon />
         </a>
     </Button>
 )
